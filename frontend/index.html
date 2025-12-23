@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ashutosh AutoFin – Loan Popup</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+.popup-overlay {position:fixed; inset:0; background:rgba(0,0,0,.7); display:none; justify-content:center; align-items:center; z-index:999;}
+.popup-content {background:#fff; width:95%; max-width:520px; border-radius:12px; padding:20px; position:relative; box-shadow:0 20px 40px rgba(0,0,0,.3);}
+.close-btn {position:absolute; right:15px; top:10px; font-size:26px; cursor:pointer;}
+.slide {display:none;}
+.slide.active {display:block; animation: slideFade .4s ease;}
+input, select {width:100%; padding:10px; margin:8px 0; border-radius:6px; border:1px solid #ccc;}
+button {padding:12px 18px; border:none; border-radius:6px; background:#0d6efd; color:white; cursor:pointer;}
+.popup-nav {display:flex; justify-content:space-between; margin-top:10px;}
+@keyframes slideFade {from {opacity:0; transform:translateX(20px);} to {opacity:1;}}
+</style>
+</head>
+<body>
+
+<button id="openForm">Apply For Loan</button>
+
+<div id="loanPopup" class="popup-overlay">
+  <div class="popup-content">
+    <span class="close-btn">&times;</span>
+
+    <div class="slides">
+      <div class="slide active">
+        <h2>Ahmedabad Branch</h2>
+        <p class="branch-email">nextviewsignage@gmail.com</p>
+        <p>Services: Micro / Personal Loan</p>
+      </div>
+      <div class="slide">
+        <h2>Rajkot Branch</h2>
+        <p class="branch-email">nextviewsignage@gmail.com</p>
+        <p>Services: Vehicle / Business Loan</p>
+      </div>
+      <div class="slide">
+        <h2>Gandhinagar Branch</h2>
+        <p class="branch-email">nextviewsignage@gmail.com</p>
+        <p>Services: Personal / Micro Finance</p>
+      </div>
+      <div class="slide">
+        <h2>Surat Branch</h2>
+        <p class="branch-email">nextviewsignage@gmail.com</p>
+        <p>Services: Business Loan</p>
+      </div>
+      <div class="slide">
+        <h2>Vadodara Branch</h2>
+        <p class="branch-email">nextviewsignage@gmail.com</p>
+        <p>Services: Vehicle / Personal Loan</p>
+      </div>
+    </div>
+
+    <form id="customerForm">
+      <input name="name" placeholder="Customer Name" required>
+      <input name="email" type="email" placeholder="Customer Email" required>
+      <input name="phone" placeholder="Mobile Number" required>
+
+      <select name="loan" required>
+        <option value="">Select Loan Type</option>
+        <option>Micro Loan</option>
+        <option>Personal Loan</option>
+        <option>Vehicle Loan</option>
+        <option>Business Loan</option>
+      </select>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <div class="popup-nav">
+      <button id="prev">Back</button>
+      <button id="next">Next</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const popup = document.getElementById("loanPopup");
+const slides = document.querySelectorAll(".slide");
+let index = 0;
+
+document.getElementById("openForm").onclick = () => popup.style.display = "flex";
+document.querySelector(".close-btn").onclick = () => popup.style.display = "none";
+
+document.getElementById("next").onclick = () => changeSlide(1);
+document.getElementById("prev").onclick = () => changeSlide(-1);
+
+function changeSlide(step) {
+  slides[index].classList.remove("active");
+  index = (index + step + slides.length) % slides.length;
+  slides[index].classList.add("active");
+}
+
+document.getElementById("customerForm").onsubmit = function (e) {
+  e.preventDefault();
+
+  const f = e.target;
+
+  const name = f.name.value;
+  const email = f.email.value;
+  const phone = f.phone.value;
+  const loan = f.loan.value; // ✅ FIXED
+
+  const activeSlide = slides[index];
+  const branch = activeSlide.querySelector("h2").innerText;
+
+  const message =
+`📢 New Loan Enquiry
+
+🏢 Branch: ${branch}
+
+👤 Name: ${name}
+📞 Mobile: ${phone}
+📧 Email: ${email}
+💰 Loan Type: ${loan}
+
+🌐 Source: Website Popup`;
+
+  const whatsappNumber = "919227896944";
+
+  // ✅ Desktop + Mobile compatible
+  const whatsappURL =
+    `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`;
+
+  window.open(whatsappURL, "_blank");
+
+  popup.style.display = "none";
+};
+</script>
+
+
+
+</body>
+</html>
