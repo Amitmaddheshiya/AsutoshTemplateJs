@@ -2,135 +2,309 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Ashutosh AutoFin – Loan Popup</title>
+<title>Ashutosh Finance Pvt Ltd – Loan Application</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
-.popup-overlay {position:fixed; inset:0; background:rgba(0,0,0,.7); display:none; justify-content:center; align-items:center; z-index:999;}
-.popup-content {background:#fff; width:95%; max-width:520px; border-radius:12px; padding:20px; position:relative; box-shadow:0 20px 40px rgba(0,0,0,.3);}
-.close-btn {position:absolute; right:15px; top:10px; font-size:26px; cursor:pointer;}
-.slide {display:none;}
-.slide.active {display:block; animation: slideFade .4s ease;}
-input, select {width:100%; padding:10px; margin:8px 0; border-radius:6px; border:1px solid #ccc;}
-button {padding:12px 18px; border:none; border-radius:6px; background:#0d6efd; color:white; cursor:pointer;}
-.popup-nav {display:flex; justify-content:space-between; margin-top:10px;}
-@keyframes slideFade {from {opacity:0; transform:translateX(20px);} to {opacity:1;}}
+body{
+  font-family: "Segoe UI", sans-serif;
+  background:#f4f6f9;
+}
+button{cursor:pointer}
+
+.popup-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.75);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+.popup-content{
+  background:#fff;
+  width:95%;
+  max-width:580px;
+  border-radius:14px;
+  padding:22px;
+  position:relative;
+  box-shadow:0 25px 50px rgba(0,0,0,.3);
+}
+.close-btn{
+  position:absolute;
+  right:15px;
+  top:10px;
+  font-size:26px;
+  cursor:pointer;
+}
+
+.slide{display:none}
+.slide.active{display:block; animation:fade .4s ease}
+@keyframes fade{
+  from{opacity:0; transform:translateY(15px)}
+  to{opacity:1}
+}
+
+.company-box{
+  background:linear-gradient(135deg,#0d6efd,#084298);
+  color:#fff;
+  padding:16px;
+  border-radius:10px;
+  margin-bottom:15px;
+}
+.company-box h2{margin:0;font-size:20px}
+.company-box p{margin:4px 0;font-size:14px}
+
+.loan-table{
+  width:100%;
+  border-collapse:collapse;
+  margin:10px 0;
+  font-size:13px;
+}
+.loan-table th,.loan-table td{
+  border:1px solid #ddd;
+  padding:6px;
+  text-align:center;
+}
+.loan-table th{background:#f1f1f1}
+
+input,select,textarea{
+  width:100%;
+  padding:10px;
+  margin:7px 0;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+textarea{resize:none}
+
+.submit-btn{
+  background:#198754;
+  color:#fff;
+  padding:12px;
+  border:none;
+  width:100%;
+  border-radius:8px;
+  font-size:16px;
+}
+
+.popup-nav{
+  display:flex;
+  justify-content:space-between;
+  margin-top:10px;
+}
+.popup-nav button{
+  background:#0d6efd;
+  color:#fff;
+  border:none;
+  padding:10px 16px;
+  border-radius:6px;
+}
 </style>
 </head>
+
 <body>
 
 <button id="openForm">Apply For Loan</button>
 
 <div id="loanPopup" class="popup-overlay">
-  <div class="popup-content">
-    <span class="close-btn">&times;</span>
+<div class="popup-content">
+<span class="close-btn">&times;</span>
 
-    <div class="slides">
-      <div class="slide active">
-        <h2>Ahmedabad Branch</h2>
-        <p class="branch-email">nextviewsignage@gmail.com</p>
-        <p>Services: Micro / Personal Loan</p>
-      </div>
-      <div class="slide">
-        <h2>Rajkot Branch</h2>
-        <p class="branch-email">nextviewsignage@gmail.com</p>
-        <p>Services: Vehicle / Business Loan</p>
-      </div>
-      <div class="slide">
-        <h2>Gandhinagar Branch</h2>
-        <p class="branch-email">nextviewsignage@gmail.com</p>
-        <p>Services: Personal / Micro Finance</p>
-      </div>
-      <div class="slide">
-        <h2>Surat Branch</h2>
-        <p class="branch-email">nextviewsignage@gmail.com</p>
-        <p>Services: Business Loan</p>
-      </div>
-      <div class="slide">
-        <h2>Vadodara Branch</h2>
-        <p class="branch-email">nextviewsignage@gmail.com</p>
-        <p>Services: Vehicle / Personal Loan</p>
-      </div>
-    </div>
+<div class="slides">
 
-    <form id="customerForm">
-      <input name="name" placeholder="Customer Name" required>
-      <input name="email" type="email" placeholder="Customer Email" required>
-      <input name="phone" placeholder="Mobile Number" required>
-
-      <select name="loan" required>
-        <option value="">Select Loan Type</option>
-        <option>Micro Loan</option>
-        <option>Personal Loan</option>
-        <option>Vehicle Loan</option>
-        <option>Business Loan</option>
-      </select>
-
-      <button type="submit">Submit</button>
-    </form>
-
-    <div class="popup-nav">
-      <button id="prev">Back</button>
-      <button id="next">Next</button>
-    </div>
-
+<!-- ================= VASTRAPUR ================= -->
+<div class="slide active" data-branch="Vastrapur">
+  <div class="company-box">
+    <h2>Ashutosh Finance Pvt Ltd</h2>
+    <p><b>Branch:</b> Vastrapur</p>
+    <p>📍 ITC Narmada, Nyay Marg, IIM, Vastrapur, Ahmedabad</p>
+    <p>📞 +91 9227896944</p>
   </div>
+
+  <table class="loan-table">
+    <tr><th>Loan</th><th>Amount</th><th>ROI</th><th>Tenure</th></tr>
+    <tr><td>Personal (Secured)</td><td>₹2L–₹10L</td><td>32–36%</td><td>6–36 mo</td></tr>
+    <tr><td>Personal (Unsecured)</td><td>₹50K–₹10L</td><td>32–36%</td><td>6–36 mo</td></tr>
+    <tr><td>Micro Loan</td><td>₹50K–₹1.5L</td><td>32–36%</td><td>6–36 mo</td></tr>
+  </table>
+</div>
+
+<div class="slide" data-branch="Kheda">
+  <div class="company-box">
+    <h2>Ashutosh Finance Pvt Ltd</h2>
+    <p><b>Branch:</b> Kheda</p>
+    <p>📍 Gujarat</p>
+    <p>📞 +91 9227896944</p>
+  </div>
+  <table class="loan-table">
+    <tr><th>Loan</th><th>Amount</th><th>ROI</th><th>Tenure</th></tr>
+    <tr><td>Personal (Secured)</td><td>₹2L–₹10L</td><td>32–36%</td><td>6–36 mo</td></tr>
+    <tr><td>Personal (Unsecured)</td><td>₹50K–₹10L</td><td>32–36%</td><td>6–36 mo</td></tr>
+    <tr><td>Micro Loan</td><td>₹50K–₹1.5L</td><td>32–36%</td><td>6–36 mo</td></tr>
+  </table>
+</div>
+
+<div class="slide" data-branch="Dholka">
+  <div class="company-box">
+    <h2>Ashutosh Finance Pvt Ltd</h2>
+    <p><b>Branch:</b> Dholka</p>
+    <p>📍 Gujarat</p>
+    <p>📞 +91 9227896944</p>
+  </div>
+  <table class="loan-table">
+    <tr><th>Loan</th><th>Amount</th><th>ROI</th><th>Tenure</th></tr>
+    <tr><td>Personal (Secured)</td><td>₹2L–₹10L</td><td>32–36%</td><td>6–36 mo</td></tr>
+    <tr><td>Personal (Unsecured)</td><td>₹50K–₹10L</td><td>32–36%</td><td>6–36 mo</td></tr>
+    <tr><td>Micro Loan</td><td>₹50K–₹1.5L</td><td>32–36%</td><td>6–36 mo</td></tr>
+  </table>
+</div>
+
+<div class="slide" data-branch="Dholka Kalikund">
+  <div class="company-box">
+    <h2>Ashutosh Finance Pvt Ltd</h2>
+    <p><b>Branch:</b> Dholka Kalikund</p>
+    <p>📍 Gujarat</p>
+    <p>📞 +91 9227896944</p>
+  </div>
+  <table class="loan-table">
+    <tr><th>Loan</th><th>Amount</th><th>ROI</th><th>Tenure</th></tr>
+    <tr><td>Personal (Secured)</td><td>₹2L–₹10L</td><td>32–36%</td><td>6–36 mo</td></tr>
+    <tr><td>Personal (Unsecured)</td><td>₹50K–₹10L</td><td>32–36%</td><td>6–36 mo</td></tr>
+    <tr><td>Micro Loan</td><td>₹50K–₹1.5L</td><td>32–36%</td><td>6–36 mo</td></tr>
+  </table>
+</div>
+
+<div class="slide" data-branch="Mansa">
+  <div class="company-box">
+    <h2>Ashutosh Finance Pvt Ltd</h2>
+    <p><b>Branch:</b> Mansa</p>
+    <p>📍 Gujarat</p>
+    <p>📞 +91 9227896944</p>
+  </div>
+  <table class="loan-table">
+    <tr><th>Loan</th><th>Amount</th><th>ROI</th><th>Tenure</th></tr>
+    <tr><td>Personal (Secured)</td><td>₹2L–₹10L</td><td>32–36%</td><td>6–36 mo</td></tr>
+    <tr><td>Personal (Unsecured)</td><td>₹50K–₹10L</td><td>32–36%</td><td>6–36 mo</td></tr>
+    <tr><td>Micro Loan</td><td>₹50K–₹1.5L</td><td>32–36%</td><td>6–36 mo</td></tr>
+  </table>
+</div>
+
+<div class="slide" data-branch="Anand">
+  <div class="company-box">
+    <h2>Ashutosh Finance Pvt Ltd</h2>
+    <p><b>Branch:</b> Anand</p>
+    <p>📍 Gujarat</p>
+    <p>📞 +91 9227896944</p>
+  </div>
+  <table class="loan-table">
+    <tr><th>Loan</th><th>Amount</th><th>ROI</th><th>Tenure</th></tr>
+    <tr><td>Personal (Secured)</td><td>₹2L–₹10L</td><td>32–36%</td><td>6–36 mo</td></tr>
+    <tr><td>Personal (Unsecured)</td><td>₹50K–₹10L</td><td>32–36%</td><td>6–36 mo</td></tr>
+    <tr><td>Micro Loan</td><td>₹50K–₹1.5L</td><td>32–36%</td><td>6–36 mo</td></tr>
+  </table>
+</div>
+
+<div class="slide" data-branch="Vadodara">
+  <div class="company-box">
+    <h2>Ashutosh Finance Pvt Ltd</h2>
+    <p><b>Branch:</b> Vadodara</p>
+    <p>📍 Gujarat</p>
+    <p>📞 +91 9227896944</p>
+  </div>
+  <table class="loan-table">
+    <tr><th>Loan</th><th>Amount</th><th>ROI</th><th>Tenure</th></tr>
+    <tr><td>Personal (Secured)</td><td>₹2L–₹10L</td><td>32–36%</td><td>6–36 mo</td></tr>
+    <tr><td>Personal (Unsecured)</td><td>₹50K–₹10L</td><td>32–36%</td><td>6–36 mo</td></tr>
+    <tr><td>Micro Loan</td><td>₹50K–₹1.5L</td><td>32–36%</td><td>6–36 mo</td></tr>
+  </table>
+</div>
+
+<div class="slide" data-branch="Sanand">
+  <div class="company-box">
+    <h2>Ashutosh Finance Pvt Ltd</h2>
+    <p><b>Branch:</b> Sanand</p>
+    <p>📍 Gujarat</p>
+    <p>📞 +91 9227896944</p>
+  </div>
+  <table class="loan-table">
+    <tr><th>Loan</th><th>Amount</th><th>ROI</th><th>Tenure</th></tr>
+    <tr><td>Personal (Secured)</td><td>₹2L–₹10L</td><td>32–36%</td><td>6–36 mo</td></tr>
+    <tr><td>Personal (Unsecured)</td><td>₹50K–₹10L</td><td>32–36%</td><td>6–36 mo</td></tr>
+    <tr><td>Micro Loan</td><td>₹50K–₹1.5L</td><td>32–36%</td><td>6–36 mo</td></tr>
+  </table>
+</div>
+
+</div>
+
+<!-- ================= CUSTOMER FORM ================= -->
+<form id="customerForm">
+<input name="name" placeholder="Customer Name" required>
+<input name="phone" placeholder="Mobile Number" required>
+<input name="email" type="email" placeholder="Email">
+
+<select name="loan" required>
+<option value="">Select Loan Type</option>
+<option>Personal Loan (Secured)</option>
+<option>Personal Loan (Unsecured)</option>
+<option>Micro Loan</option>
+</select>
+
+<input name="amount" placeholder="Required Loan Amount (₹)">
+<textarea name="remarks" placeholder="Remarks"></textarea>
+
+<button class="submit-btn">Submit via WhatsApp</button>
+</form>
+
+<div class="popup-nav">
+<button id="prev">Back</button>
+<button id="next">Next</button>
+</div>
+
+</div>
 </div>
 
 <script>
-const popup = document.getElementById("loanPopup");
-const slides = document.querySelectorAll(".slide");
-let index = 0;
+const popup=document.getElementById("loanPopup");
+const slides=document.querySelectorAll(".slide");
+let index=0;
 
-document.getElementById("openForm").onclick = () => popup.style.display = "flex";
-document.querySelector(".close-btn").onclick = () => popup.style.display = "none";
+openForm.onclick=()=>popup.style.display="flex";
+document.querySelector(".close-btn").onclick=()=>popup.style.display="none";
 
-document.getElementById("next").onclick = () => changeSlide(1);
-document.getElementById("prev").onclick = () => changeSlide(-1);
+next.onclick=()=>change(1);
+prev.onclick=()=>change(-1);
 
-function changeSlide(step) {
+function change(step){
   slides[index].classList.remove("active");
-  index = (index + step + slides.length) % slides.length;
+  index=(index+step+slides.length)%slides.length;
   slides[index].classList.add("active");
 }
 
-document.getElementById("customerForm").onsubmit = function (e) {
+customerForm.onsubmit=e=>{
   e.preventDefault();
+  const f=e.target;
+  const branch=slides[index].dataset.branch;
 
-  const f = e.target;
-
-  const name = f.name.value;
-  const email = f.email.value;
-  const phone = f.phone.value;
-  const loan = f.loan.value; // ✅ FIXED
-
-  const activeSlide = slides[index];
-  const branch = activeSlide.querySelector("h2").innerText;
-
-  const message =
-`📢 New Loan Enquiry
-
+  const msg=`📢 New Loan Enquiry
 🏢 Branch: ${branch}
 
-👤 Name: ${name}
-📞 Mobile: ${phone}
-📧 Email: ${email}
-💰 Loan Type: ${loan}
+👤 Name: ${f.name.value}
+📞 Mobile: ${f.phone.value}
+📧 Email: ${f.email.value}
+💰 Loan Type: ${f.loan.value}
+💵 Amount: ${f.amount.value}
+📝 Remarks: ${f.remarks.value}
 
 🌐 Source: Website Popup`;
 
-  const whatsappNumber = "919227896944";
+  window.open(
+    `https://api.whatsapp.com/send?phone=919227896944&text=${encodeURIComponent(msg)}`,
+    "_blank"
+  );
 
-  // ✅ Desktop + Mobile compatible
-  const whatsappURL =
-    `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`;
-
-  window.open(whatsappURL, "_blank");
-
-  popup.style.display = "none";
+  popup.style.display="none";
 };
 </script>
-
-
 
 </body>
 </html>
